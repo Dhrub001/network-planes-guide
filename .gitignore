@@ -1,4 +1,23 @@
-# OS files
+# macOS
+.DS_Store
+.AppleDouble
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Linux
+*~
+
+# Temp files
+*.tmp
+*.bak
+*.swp
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*# OS files
 .DS_Store
 Thumbs.db
 
