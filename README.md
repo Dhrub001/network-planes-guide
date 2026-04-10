@@ -1,3 +1,158 @@
+# 📡 Network Planes Architecture — From Theory to Real Networks
+
+## 🚀 Overview
+
+This repository provides a **practical and in-depth guide** to understanding **Data Plane, Control Plane, and Management Plane** in real-world networking.
+
+Unlike basic theory notes, this project includes:
+
+* ✅ Architecture explanations
+* ✅ Real device configurations (OSPF, BGP, MPLS)
+* ✅ Packet flow analysis
+* ✅ Troubleshooting scenarios
+* ✅ SDN comparison
+
+---
+
+## 🧠 Network Planes Explained
+
+| Plane            | Role            | Real Function                     |
+| ---------------- | --------------- | --------------------------------- |
+| Data Plane       | Forward traffic | Packet switching, MPLS forwarding |
+| Control Plane    | Make decisions  | OSPF, BGP route calculation       |
+| Management Plane | Operate network | SSH, SNMP, monitoring             |
+
+---
+
+## 🖼️ Architecture Diagram
+
+![Network Planes](diagrams/network-planes.png)
+
+---
+
+## ⚙️ Data Plane (Forwarding)
+
+* Operates at **line rate (ASIC-based)**
+* Uses **FIB, MAC, ARP tables**
+* No decision-making → only execution
+
+### 🔥 Example
+
+```text
+Packet arrives → FIB lookup → Forwarded
+```
+
+---
+
+## 🧠 Control Plane (Decision Engine)
+
+* Runs routing protocols:
+
+  * OSPF
+  * BGP
+* Builds:
+
+  * RIB → FIB
+
+### 🔥 Example Config
+
+```bash
+router ospf 1
+ network 10.0.0.0 0.0.0.255 area 0
+```
+
+---
+
+## 🛠️ Management Plane (Operations)
+
+* SSH access
+* Monitoring (SNMP, NetFlow)
+* Logging (Syslog)
+
+---
+
+## 🔄 Packet Flow (Real Scenario)
+
+![Packet Flow](diagrams/packet-flow.png)
+
+### Flow:
+
+1. Control Plane decides path
+2. Data Plane forwards packets
+3. Management Plane monitors
+
+---
+
+## 🔥 SDN vs Traditional Networking
+
+![SDN](diagrams/sdn-architecture.png)
+
+| Feature       | Traditional | SDN         |
+| ------------- | ----------- | ----------- |
+| Control Plane | Distributed | Centralized |
+| Data Plane    | Integrated  | Separated   |
+
+---
+
+## 🧪 Hands-On Labs
+
+| Lab   | Description          |
+| ----- | -------------------- |
+| Lab 1 | Packet Flow Analysis |
+| Lab 2 | OSPF Configuration   |
+| Lab 3 | BGP Basic Setup      |
+
+👉 Check `/labs/`
+
+---
+
+## ⚙️ Configurations
+
+* OSPF → `/configs/ospf-basic/`
+* BGP → `/configs/bgp-basic/`
+* MPLS → `/configs/mpls-intro/`
+
+---
+
+## 🛑 Troubleshooting
+
+Common real-world issues:
+
+* Route not installed in FIB
+* OSPF neighbor down
+* BGP session not established
+
+👉 See `/troubleshooting/common-issues.md`
+
+---
+
+## 💼 Real-World Relevance
+
+This project reflects:
+
+* ISP routing design (BGP)
+* Enterprise networks (OSPF)
+* Data center networking
+* SDN architectures
+
+---
+
+## 📈 Skills Demonstrated
+
+* Network architecture design
+* Routing protocol understanding
+* Packet flow analysis
+* Troubleshooting methodology
+* Documentation & visualization
+
+---
+
+## 📌 Author
+
+**Dhrub Raj Giri**
+Network Engineer | Cybersecurity Enthusiast
+
+---
 # 📡 Network Planes Architecture Guide
 
 ## 📌 Overview
