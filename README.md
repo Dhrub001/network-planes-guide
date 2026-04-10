@@ -1,7 +1,7 @@
 📘 COMPLETE REFERENCE: IT DEVICE ARCHITECTURE PLANES
 A comprehensive guide to understanding Data, Control, Management, Services, Orchestration, and Analytics planes in networking devices, with special focus on Juniper Networks implementation.
 Version: 1.0 | Last Updated: April 2026 | License: MIT
-________________________________________
+________________________________________________________________________________________________________________________________________________________________
 📚 Table of Contents
 •	Introduction
 •	Core Planes
@@ -17,7 +17,8 @@ o	Analytics Plane
 •	Troubleshooting Guide
 •	Glossary
 •	GitHub Quick Start Guide
-________________________________________
+________________________________________________________________________________________________________________________________________________________________
+
 Introduction
 What is a "Plane"?
 In IT device architecture, a plane is a logical or physical separation of functions. Separating functions into planes provides:
@@ -29,22 +30,22 @@ The Airplane Analogy
 ┌─────────────────────────────────────────────────────────────┐
 │                      IT DEVICE (Router/Switch)              │
 │                                                             │
-│   ┌─────────────────────────────────────────────────┐      │
-│   │  🧑‍✈️ MANAGEMENT PLANE    = Pilot + Cockpit        │      │
-│   │     (You configure via SSH/Console)              │      │
-│   └─────────────────────────────────────────────────┘      │
+│   ┌─────────────────────────────────────────────────┐       │
+│   │  🧑‍✈️ MANAGEMENT PLANE    = Pilot + Cockpit      │       │
+│   │     (You configure via SSH/Console)             │       │
+│   └─────────────────────────────────────────────────┘       │
 │                          ▼                                  │
-│   ┌─────────────────────────────────────────────────┐      │
-│   │  🧠 CONTROL PLANE        = Air Traffic Control    │      │
-│   │     (Learns routes, builds tables)               │      │
-│   └─────────────────────────────────────────────────┘      │
+│   ┌─────────────────────────────────────────────────┐       │
+│   │  🧠 CONTROL PLANE        = Air Traffic Control  │      │
+│   │     (Learns routes, builds tables)              │       │
+│   └─────────────────────────────────────────────────┘       │
 │                          ▼                                  │
-│   ┌─────────────────────────────────────────────────┐      │
-│   │  📦 DATA PLANE           = Conveyor Belt + Bags  │      │
-│   │     (Moves packets, no thinking)                 │      │
-│   └─────────────────────────────────────────────────┘      │
+│   ┌─────────────────────────────────────────────────┐       │
+│   │  📦 DATA PLANE           = Conveyor Belt + Bags │       │
+│   │     (Moves packets, no thinking)                │       │
+│   └─────────────────────────────────────────────────┘       │
 └─────────────────────────────────────────────────────────────┘
-________________________________________
+________________________________________________________________________________________________________________________________________________________________
 
 
 Core Planes
@@ -57,19 +58,19 @@ Decision	No thinking — pure table lookup
 Example	Switching a frame, routing an IP packet
 
 How It Works
-┌─────────┐    ┌──────────────────────────────────────┐    ┌─────────┐
-│ Packet  │───▶│         DATA PLANE (Hardware)        │───▶│ Packet  │
-│  IN     │    │                                      │    │  OUT    │
-│ eth0/1  │    │  ┌──────┐  ┌──────┐  ┌────────────┐  │    │ eth0/2  │
-└─────────┘    │  │Lookup│─▶│Rewrite│─▶│  Forward   │  │    └─────────┘
-               │  │ FIB  │  │ MAC   │  │  to egress │  │
-               │  └──────┘  └──────┘  └────────────┘  │
-               └──────────────────────────────────────┘
+┌─────────┐     ┌──────────────────────────────────────┐     ┌─────────┐
+│ Packet  │───▶│         DATA PLANE (Hardware)         │───▶│ Packet  │
+│  IN     │     │                                      │     │  OUT    │
+│ eth0/1  │     │  ┌──────┐   ┌──────┐   ┌────────────┐│     │ eth0/2  │
+└─────────┘     │  │Lookup│─▶│Rewrite│─▶│  Forward   ││     └─────────┘
+                │  │ FIB  │   │ MAC   │  │  to egress ││
+                │  └──────┘   └────── ┘  └────────────┘│
+                └──────────────────────────────────────┘
                               │
                               ▼
                     No CPU involvement ever
 Key characteristic: If data plane crashes → device stops forwarding, but control/management may still respond.
-________________________________________
+________________________________________________________________________________________________________________________________________________________________
 
 
 Control Plane
@@ -108,7 +109,8 @@ How It Works
 │                      DATA PLANE (ASIC)                         │
 │   Uses FIB for wire-speed forwarding                          │
 └────────────────────────────────────────────────────────────────┘
-________________________________________
+________________________________________________________________________________________________________________________________________________________________
+
 Management Plane
 Property	Description
 Role	Configure, monitor, troubleshoot, update device
@@ -138,7 +140,8 @@ How It Works
                      │  └────────────────────────────┘    │
                      └─────────────────────────────────────┘
 Best practice: Never expose management plane to untrusted networks.
-________________________________________
+________________________________________________________________________________________________________________________________________________________________
+
 Extended Planes
 Services Plane
 Property	Description
@@ -177,7 +180,7 @@ How It Works
               ┌─────────────┐
               │ DATA PLANE  │───▶ Egress
               └─────────────┘
-________________________________________
+________________________________________________________________________________________________________________________________________________________________
 Orchestration Plane (SDN)
 Property	Description
 Role	Automate policies across multiple devices
@@ -207,14 +210,16 @@ Architecture
          │ (Data/     │ │ (Data/     │ │ (Data/     │
          │ Control)   │ │ Control)   │ │ Control)   │
          └────────────┘ └────────────┘ └────────────┘
-________________________________________
+________________________________________________________________________________________________________________________________________________________________
+
 Analytics / Assurance Plane
 Property	Description
 Role	Collect telemetry, detect anomalies, predict failures
 Data Sources	Streaming telemetry, sFlow, IPFIX, syslog, SNMP polls
 Output	Dashboards, alerts, automated remediation
 Examples	Cisco ThousandEyes, Prometheus + Grafana, Nokia NSP
-________________________________________
+________________________________________________________________________________________________________________________________________________________________
+
 Juniper Networks Implementation
 Unique Architecture
 Juniper physically separates control and data planes into distinct hardware modules:
@@ -269,7 +274,7 @@ PFE (Data)	show pfe statistics	Forwarding stats
 Services	show services accounting	Services module stats
 	show security flow statistics	Firewall (SRX)
 RE↔PFE	show chassis fpc	Check communication
-________________________________________
+________________________________________________________________________________________________________________________________________________________________
 Comparison Matrix
 Plane	Role	Speed	Hardware	Example Operation	Crash Impact
 Data	Forward	Nanoseconds	ASIC/FPGA	Switching frame	Device stops forwarding
@@ -278,7 +283,8 @@ Management	Admin	Human-scale	CPU	SSH config change	Device still forwards, can't 
 Services	Process	Microseconds	Crypto/CPU	IPsec encrypt	Complex services fail
 Orchestration	Automate	Seconds to mins	Server	Deploy VLANs across 100 switches	No new policies, existing run
 Analytics	Observe	Streaming	DB/ML	Latency heatmap	No visibility, device still works
-________________________________________
+________________________________________________________________________________________________________________________________________________________________
+
 Troubleshooting by Plane
 Symptoms and Root Planes
 Symptom	Primary Plane	Secondary Plane
@@ -315,7 +321,7 @@ Diagnostic Flowchart
     │ Control    │   │ Check Control  │
     │ plane OK   │   │ plane config   │
     └────────────┘   └────────────────┘
-________________________________________
+________________________________________________________________________________________________________________________________________________________________
 Glossary
 Term	Definition
 ASIC	Application-Specific Integrated Circuit — custom chip for forwarding
